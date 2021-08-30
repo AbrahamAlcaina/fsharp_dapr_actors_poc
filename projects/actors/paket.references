@@ -1,0 +1,8 @@
+Dapr.Client
+Dapr.Actors
+Dapr.Actors.AspNetCore
+Dapr.Extensions.Configuration
+Ply
+FSharpPlus
+FsToolkit.ErrorHandling
+FsToolkit.ErrorHandling.TaskResult

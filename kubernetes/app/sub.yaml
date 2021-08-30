@@ -1,0 +1,44 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: subapp
+  labels:
+    app: sub
+spec:
+  selector:
+    app: sub
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subapp
+  labels:
+    app: sub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sub
+  template:
+    metadata:
+      labels:
+        app: sub
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/config: app-config
+        dapr.io/app-id: "subapp"
+        dapr.io/app-port: "5000"
+        dapr.io/log-as-json: "true"
+    spec:
+      containers:
+        - name: node
+          image: abrahamalcaina/sub-app:latest
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: Always

@@ -1,0 +1,21 @@
+apiVersion: dapr.io/v1alpha1
+kind: Configuration
+metadata:
+  name: app-config
+spec:
+  tracing:
+    samplingRate: "1"
+    zipkin:
+      endpointAddress: "http://zipkin.dapr-monitoring.svc.cluster.local:9411/api/v2/spans"
+  secrets:
+    scopes:
+      - storeName: my-secret-store
+        defaultAccess: deny
+        allowedSecrets: ["my-secret-store"]
+      - storeName: redis-secretstore
+        defaultAccess: deny
+        allowedSecrets: ["redis"]
+  mtls:
+    enabled: true
+    workloadCertTTL: "24h"
+    allowedClockSkew: "15m"

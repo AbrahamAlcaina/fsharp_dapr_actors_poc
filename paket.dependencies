@@ -1,0 +1,19 @@
+storage: none
+framework: auto-detect
+source https://api.nuget.org/v3/index.json
+
+nuget Dapr.Actors 
+nuget Dapr.Actors.AspNetCore 
+nuget Dapr.AspNetCore 
+nuget Dapr.Client 
+nuget Dapr.Extensions.Configuration 
+nuget FSharpPlus
+nuget FsToolkit.ErrorHandling
+nuget FsToolkit.ErrorHandling.TaskResult
+nuget Giraffe
+nuget Giraffe.ViewEngine
+nuget Microsoft.NET.Test.Sdk
+nuget Microsoft.AspNetCore.TestHost
+nuget xunit
+nuget xunit.runner.visualstudio
+nuget Ply

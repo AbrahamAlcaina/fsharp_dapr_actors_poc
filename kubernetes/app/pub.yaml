@@ -1,0 +1,44 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: pubapp
+  labels:
+    app: pub
+spec:
+  selector:
+    app: pub
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5555
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pubapp
+  labels:
+    app: pub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pub
+  template:
+    metadata:
+      labels:
+        app: pub
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/config: app-config
+        dapr.io/app-id: "pubapp"
+        dapr.io/app-port: "5555"
+        dapr.io/log-as-json: "true"
+    spec:
+      containers:
+        - name: node
+          image: abrahamalcaina/pub-app:latest
+          ports:
+            - containerPort: 5555
+          imagePullPolicy: Always
