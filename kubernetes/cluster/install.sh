@@ -73,11 +73,14 @@ if [[ $APP ]]
 then 
   echo "7.- Install App"
   
-  echo "7.1.- Restart sidecar injection after upgrade dapr"
-  kubectl rollout restart deployment dapr-sidecar-injector  -n dapr-system
-  sleep 1m
-  kubectl logs -l app=dapr-sidecar-injector -n dapr-system
+  echo "7.1- Wait 2m"
+  sleep 2m
+  # echo "7.1.- Restart sidecar injection after upgrade dapr"
+  # kubectl rollout restart deployment dapr-sidecar-injector  -n dapr-system
+  
+  # kubectl logs -l app=dapr-sidecar-injector -n dapr-system
 
+  echo "7.2- Deploy App"
   cd ../../
   ./scripts/k8-deploy.sh
 fi

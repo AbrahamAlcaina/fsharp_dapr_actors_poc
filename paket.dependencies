@@ -12,6 +12,7 @@ nuget FsToolkit.ErrorHandling
 nuget FsToolkit.ErrorHandling.TaskResult
 nuget Giraffe
 nuget Giraffe.ViewEngine
+nuget Microsoft.AspNetCore.WebSockets
 nuget Microsoft.NET.Test.Sdk
 nuget Microsoft.AspNetCore.TestHost
 nuget xunit

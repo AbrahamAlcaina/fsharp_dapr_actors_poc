@@ -89,8 +89,7 @@ type PlaceActor(host, dapr: DaprClient) =
 
         task {
             let storePath =
-                $"events||{getNow ()}||{nameof event}"
-                |> String.toLower
+                $"events||{getNow ()}||refill" |> String.toLower
 
             do! stateManager.SetStateAsync(storePath, event)
 

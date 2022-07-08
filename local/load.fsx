@@ -5,7 +5,7 @@ open System.Threading.Tasks
 #r "nuget: Dapr.Extensions.Configuration"
 #r "nuget: Ply"
 
-#r "../projects/actors/bin/Debug/net5.0/Actors.App.dll"
+#r "../projects/actors/bin/Debug/net6.0/Actors.App.dll"
 
 
 open FSharp.Control.Tasks

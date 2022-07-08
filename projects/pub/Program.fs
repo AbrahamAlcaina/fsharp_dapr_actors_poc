@@ -56,7 +56,7 @@ let indexHandler (name: string) =
             task {
 
                 let b1 = getPlaceProxy "b1"
-                let! quantity = b1.Status()
+                let! quantity = b1.Refill(10)
 
                 let greetings = $"b1: {quantity}"
                 let model = { Text = greetings }

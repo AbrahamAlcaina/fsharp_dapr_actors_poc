@@ -1,44 +1,44 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: subapp
+  name: loggerapp
   labels:
-    app: sub
+    app: logger
 spec:
   selector:
-    app: sub
+    app: logger
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 5556
+      targetPort: 5557
   type: NodePort
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: subapp
+  name: loggerapp
   labels:
-    app: sub
+    app: logger
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sub
+      app: logger
   template:
     metadata:
       labels:
-        app: sub
+        app: logger
       annotations:
         dapr.io/enabled: "true"
         dapr.io/config: app-config
-        dapr.io/app-id: "subapp"
-        dapr.io/app-port: "5556"
+        dapr.io/app-id: "loggerapp"
+        dapr.io/app-port: "5557"
         dapr.io/log-as-json: "true"
     spec:
       containers:
         - name: node
-          image: abrahamalcaina/sub-app:latest
+          image: abrahamalcaina/logger-app:latest
           ports:
-            - containerPort: 5556
+            - containerPort: 5557
           imagePullPolicy: Always

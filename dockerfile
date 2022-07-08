@@ -36,3 +36,15 @@ WORKDIR /app
 COPY --from=sub-builder /app/projects/sub/out .
 EXPOSE 5000
 ENTRYPOINT ["dotnet", "Sub.App.dll"]
+
+# LOGGER
+FROM base AS logger-builder
+WORKDIR /app/projects/logger
+RUN dotnet tool restore
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine AS logger-app
+WORKDIR /app
+COPY --from=logger-builder /app/projects/logger/out .
+EXPOSE 5000
+ENTRYPOINT ["dotnet", "Logger.App.dll"]

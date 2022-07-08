@@ -106,7 +106,7 @@ let errorHandler (ex: Exception) (logger: ILogger) =
 
 let configureCors (builder: CorsPolicyBuilder) =
     builder
-        .WithOrigins("http://localhost:5000", "https://localhost:5001")
+        .WithOrigins("http://localhost:5556", "https://localhost:5556")
         .AllowAnyMethod()
         .AllowAnyHeader()
     |> ignore
@@ -154,7 +154,7 @@ let main args =
             webHostBuilder
                 .UseContentRoot(contentRoot)
                 .UseWebRoot(webRoot)
-                .UseUrls("http://localhost:5000")
+                .UseUrls("http://localhost:5556")
                 .Configure(Action<IApplicationBuilder> configureApp)
                 .ConfigureServices(configureServices)
                 .ConfigureLogging(configureLogging)
